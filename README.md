@@ -23,7 +23,86 @@ STEP 7: Use cross tabulation method to quantitatively analyze the relationship b
 STEP 8: Use heatmap method of representation to show relationships between two variables, one plotted on each axis.
 
 ## CODING AND OUTPUT
-        <<INCLUDE YOUR CODING AND OUTPUT SCREENSHOTS>>
+```py
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+df=pd.read_csv("/content/titanic_dataset.csv")
+df
+```
+![](./1.png)
+
+df.head()
+![](./2.png)
+
+df.tail()
+![](./3.png)
+
+df.describe()
+![](./4.png)
+
+df.info()
+![](./5.png)
+
+df.shape
+![](./6.png)
+
+df.set_index("PassengerId",inplace=True)
+df
+![](./7.png)
+
+df.nunique()
+![](./8.png)
+
+df["Survived"].value_counts()
+![](./9.png)
+
+per=(df["Survived"].value_counts()/df.shape[0]*100).round(2)
+per
+![](./10.png)
+
+sns.countplot(data=df,x="Survived")
+![](./11.png)
+
+df.Pclass.unique()
+![](./12.png)
+
+df.rename(columns={'Sex':'Gender'},inplace=True)
+df
+![](./13.png)
+
+sns.catplot(x="Gender",col="Survived",kind="count",data=df,height=5,aspect=.7)
+![](./14.png)
+
+sns.catplot(x='Survived',hue="Gender",data=df,kind="count")
+![](./15.png)
+
+df.boxplot(column="Age",by="Survived")
+![](./16.png)
+
+sns.scatterplot(x=df["Age"],y=df["Fare"])
+![](./17.png)
+
+sns.jointplot(x="Age",y="Fare",data=df)
+![](./18.png)
+
+fig, ax1=plt.subplots(figsize=(8,5))
+pt=sns.boxplot(ax=ax1,x='Pclass',y='Age',hue='Gender',data=df)
+![](./19.png)
+
+sns.catplot(data=df,col="Survived",x="Gender",hue="Pclass",kind="count")
+![](./20.png)
+
+corr=df.corr()
+sns.heatmap(corr,annot=True)
+![](./21.png)
+
+sns.pairplot(df)
+![](./22.png)
+
+
+
 
 # RESULT
-        <<INCLUDE YOUR RESULT HERE>>
+        The EDA Analysis using python is executed successfully.
